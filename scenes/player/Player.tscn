@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://fc5t2k7reqiw"]
+
+[ext_resource type="Script" uid="uid://bgybspwyjsupe" path="res://src/Entities/Player/PlayerController.cs" id="1_player"]
+[ext_resource type="Script" uid="uid://74uebrvateif" path="res://src/Entities/Player/PlayerShooter.cs" id="2_shooter"]
+[ext_resource type="Texture2D" uid="uid://dhn5ywffjxqt7" path="res://assets/sprites/player/spritesheet.png" id="3_sheet"]
+
+[sub_resource type="AtlasTexture" id="atlas_idle_1"]
+atlas = ExtResource("3_sheet")
+region = Rect2(822, 591, 251, 246)
+margin = Rect2(0, 0, 0, 116)
+
+[sub_resource type="AtlasTexture" id="atlas_idle_2"]
+atlas = ExtResource("3_sheet")
+region = Rect2(1082, 592, 266, 246)
+margin = Rect2(0, 0, 0, 116)
+
+[sub_resource type="AtlasTexture" id="atlas_jump_1"]
+atlas = ExtResource("3_sheet")
+region = Rect2(795, 15, 282, 362)
+
+[sub_resource type="AtlasTexture" id="atlas_jump_2"]
+atlas = ExtResource("3_sheet")
+region = Rect2(1083, 15, 263, 361)
+margin = Rect2(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="atlas_run_1"]
+atlas = ExtResource("3_sheet")
+region = Rect2(112, 612, 323, 199)
+margin = Rect2(0, 0, 0, 163)
+
+[sub_resource type="AtlasTexture" id="atlas_run_2"]
+atlas = ExtResource("3_sheet")
+region = Rect2(438, 610, 341, 178)
+margin = Rect2(0, 0, 0, 184)
+
+[sub_resource type="AtlasTexture" id="atlas_walk_1"]
+atlas = ExtResource("3_sheet")
+region = Rect2(142, 96, 311, 277)
+margin = Rect2(0, 0, 0, 85)
+
+[sub_resource type="AtlasTexture" id="atlas_walk_2"]
+atlas = ExtResource("3_sheet")
+region = Rect2(454, 92, 286, 280)
+margin = Rect2(0, 0, 0, 82)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("atlas_idle_2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_jump_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("atlas_jump_2")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_run_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("atlas_run_2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("atlas_walk_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("atlas_walk_2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kuee"]
+radius = 27.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1205444252]
+script = ExtResource("1_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1885799028]
+position = Vector2(0, -9.000001)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_sf")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1597479701]
+position = Vector2(-2, -20)
+shape = SubResource("CircleShape2D_4kuee")
+
+[node name="PlayerShooter" type="Node2D" parent="." unique_id=342602313]
+script = ExtResource("2_shooter")
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="PlayerShooter" unique_id=1363057083]
+position = Vector2(25, -18)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=895515536]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.15
+drag_top_margin = 0.1
+drag_right_margin = 0.15
+drag_bottom_margin = 0.1

@@ -1,0 +1,28 @@
+# Godot 4 - Generated files
+.godot/
+*.uid
+
+# Mono / C# build artifacts
+.mono/
+data_*/
+mono_crash.*.json
+bin/
+obj/
+*.csproj.user
+
+# Export builds
+exports/
+*.apk
+*.aab
+*.ipa
+*.exe
+*.x86_64
+*.app
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/

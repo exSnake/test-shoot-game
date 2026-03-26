@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://enemy_walker_scene"]
+
+[ext_resource type="Script" path="res://src/Entities/Enemies/EnemyWalker.cs" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy"]
+size = Vector2(20, 24)
+
+[node name="EnemyWalker" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_script")
+BaseHealth = 2
+BaseScore = 100
+BaseContactDmg = 1
+MoveSpeed = 60.0
+PatrolDistance = 100.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -24.0
+offset_right = 10.0
+offset_bottom = 0.0
+color = Color(0.85, 0.15, 0.15, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_enemy")
